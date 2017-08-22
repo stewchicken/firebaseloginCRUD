@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { HttpModule } from '@angular/http';
 import { AngularFireModule } from "angularfire2";
+
 
 import { AngularFireAuthModule } from "angularfire2/auth";
 import { MyApp } from './app.component';
@@ -17,6 +19,8 @@ import { MenuPage } from "../pages/menu/menu";
 import { ProductsPage } from "../pages/products/products";
 import { ShoppingPage } from "../pages/shopping/shopping";
 import { AddproductPage } from "../pages/addproduct/addproduct";
+import { ImageProvider } from '../providers/image/image';
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
@@ -32,6 +36,7 @@ import { AddproductPage } from "../pages/addproduct/addproduct";
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule
@@ -51,7 +56,9 @@ import { AddproductPage } from "../pages/addproduct/addproduct";
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    ImageProvider,
+    Camera
   ]
 })
 export class AppModule { }
