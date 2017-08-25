@@ -10,31 +10,36 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <ion-item>
-    <ion-label floating> product name
-    </ion-label>
-    <ion-input type="text" [(ngModel)]="product.name"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>category</ion-label>
-    <ion-select type="text" [(ngModel)]="product.category">
-      <ion-option value="see food">see food</ion-option>
-      <ion-option value="vegitable">vegitable</ion-option>
-      <ion-option value="vegitable">fruit</ion-option>
-      <ion-option value="vegitable">dry food</ion-option>
-      <ion-option value="vegitable">meet</ion-option>
-    </ion-select>
-  </ion-item>
-  <ion-item>
-    <ion-label floating> product price
-    </ion-label>
-    <ion-input type="number" step="0.1" [(ngModel)]="product.price"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label floating> product details
-    </ion-label>
-    <ion-input type="text" [(ngModel)]="product.details"></ion-input>
-  </ion-item>
-  <button ion-button block (click)="takePicAndUpload()">take photo upload</button>
-  <button ion-button block>add product</button>
+  <form (ngSubmit)="onAddProduct(f.value)" #f="ngForm">
+    <ion-item>
+      <ion-label floating> product name
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="product.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>category</ion-label>
+      <ion-select type="text" [(ngModel)]="product.category">
+        <ion-option value="see food">see food</ion-option>
+        <ion-option value="vegitable">vegitable</ion-option>
+        <ion-option value="vegitable">fruit</ion-option>
+        <ion-option value="vegitable">dry food</ion-option>
+        <ion-option value="vegitable">meet</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label floating> product price
+      </ion-label>
+      <ion-input type="number" step="0.1" [(ngModel)]="product.price"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating> product details
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="product.details"></ion-input>
+    </ion-item>
+    <ion-item>
+      <img [src]="captureDataUrl" *ngIf="captureDataUrl" />
+    </ion-item>
+    <button *ngIf="!captureDataUrl" ion-button block (click)="takePicAndUpload()">take photo upload</button>
+    <button ion-button block type="submit" [disabled]="!f.valid">add product</button>
+  </form>
 </ion-content>

@@ -24,8 +24,10 @@ export class LoginPage {
   async login(user: User) {
 
     this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password).then((session) => {
-      console.log(session.currentUser);
-       this.navCtrl.push(MenuPage);
+      let firebaseuser = session.currentUser;
+      console.log(firebaseuser);
+      console.log(this.afAuth.auth.currentUser);
+      this.navCtrl.push(MenuPage);
     }).catch(error => {
       user.email = "email  maybe wrong!"
       user.password = "password maybe not correct!"

@@ -26,4 +26,8 @@ export class MenuPage {
     this.navCtrl.push(ProductsPage);
   }
 
+  navtoShopping(){
+    
+  }
+
 }

@@ -9,10 +9,17 @@
   <ion-navbar color="primary">
     <ion-title>product list</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="navtoAddShoppingPage()">
+      <button ion-button icon-only (click)="navtoAddProductPage()">
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-buttons>
+    <ion-grid>
+    <ion-row *ngFor="let product of proudcts; let i=index ">
+      <ion-col width-50>
+        <img [src]="product.downloadimage" />
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   </ion-navbar>
 </ion-header>
 
