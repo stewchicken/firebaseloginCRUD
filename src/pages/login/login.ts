@@ -13,7 +13,7 @@ import { MenuPage } from "../menu/menu";
 })
 export class LoginPage {
   user = {} as User;
-
+  loggedin = false;
   constructor(private afAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -27,11 +27,25 @@ export class LoginPage {
       let firebaseuser = session.currentUser;
       console.log(firebaseuser);
       console.log(this.afAuth.auth.currentUser);
+      this.loggedin = true;
+      this.user = {} as User;
       this.navCtrl.push(MenuPage);
+
     }).catch(error => {
+      this.loggedin = false;
       user.email = "email  maybe wrong!"
       user.password = "password maybe not correct!"
     });
+  }
+
+  async logout() {
+    this.afAuth.auth.signOut().then(function () {
+      // Sign-out successful.
+      this.loggedin = false;
+    }, function (error) {
+      // An error happened.
+    });
+
   }
 
   register() {

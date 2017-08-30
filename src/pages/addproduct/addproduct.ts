@@ -5,13 +5,8 @@ import { CameraOptions, Camera } from "@ionic-native/camera";
 import { ImageProvider } from "../../providers/image/image";
 import { UUID } from 'angular2-uuid';
 import * as firebase from 'firebase';
+import { AngularFireDatabase, FirebaseListObservable } from "angularfire2/database";
 
-/**
- * Generated class for the AddproductPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 
 @Component({
   selector: 'page-addproduct',
@@ -20,6 +15,8 @@ import * as firebase from 'firebase';
 export class AddproductPage {
   product = {} as Product;
   captureDataUrl: string;
+  productItemRef$: FirebaseListObservable<Product[]>;
+
   cameraOptions: CameraOptions = {
     quality: 50,
     destinationType: this.camera.DestinationType.DATA_URL,
@@ -28,7 +25,8 @@ export class AddproductPage {
   };
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera,
-    private imageSrv: ImageProvider) {
+    private imageSrv: ImageProvider, private database: AngularFireDatabase) {
+    this.productItemRef$ = this.database.list('productitems');
   }
 
   ionViewDidLoad() {
@@ -36,29 +34,31 @@ export class AddproductPage {
   }
 
   onAddProduct(product: Product) {
-    this.product.category=product.category;
-    this.product.details=product.details;
-    this.product.id=UUID.UUID();
-    this.product.name=product.name;
-    this.product.price=product.price;
-
-    let ref = firebase.database().ref('productitems');
-    ref.push(product);
-
+    debugger;
+    this.product.category = product.category;
+    this.product.details = product.details;
+    this.product.id = UUID.UUID();
+    this.product.name = product.name;
+    this.product.price = product.price;
+    this.product.imageUrl = null;
+    console.log("imagename: " + this.product.imagename);
+    console.log("imageUrl: " + this.product.imageUrl);
+    this.productItemRef$.push(product);
+    this.product = {} as Product;
+    this.navCtrl.pop();
   }
   takePicAndUpload() {
-    let picname = UUID.UUID() + '.jpg';
+    this.product.imagename = UUID.UUID(); //only jpg format
+
     this.camera.getPicture(this.cameraOptions)
       .then(data => {
         let base64Image = 'data:image/jpeg;base64,' + data;
-        //image: string, namespace: string, imageName: string
-        //   <img [src]="captureDataUrl"  *ngIf="captureDataUrl"/>
         this.captureDataUrl = base64Image;
-        return this.imageSrv.uploadImage(base64Image, 'products', picname);
+        return this.imageSrv.uploadImage(base64Image, 'products', this.product.imagename);
       })
       .then(data => {
         //upload is done
-        this.product.imagename = picname;
+        console.log("imagename :" + this.product.imagename);
       });
 
   }

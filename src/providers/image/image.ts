@@ -24,7 +24,7 @@ export class ImageProvider {
 
   getImage(namespace: string, imageName: string): any {
     let storageRef = firebase.storage().ref();
-    let imageRef = storageRef.child(`${namespace}/${imageName}`);
+    let imageRef = storageRef.child(`${namespace}/${imageName}.jpg`);
     return imageRef.getDownloadURL();
   }
 

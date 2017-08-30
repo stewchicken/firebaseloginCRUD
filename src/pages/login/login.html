@@ -22,7 +22,9 @@
     <ion-input [(ngModel)]="user.password" type="password"></ion-input>
   </ion-item>
 
-  <button ion-button (click)="login(user)">login
+  <button *ngIf="!loggedin" ion-button (click)="login(user)">login
+  </button>
+  <button *ngIf="loggedin" ion-button (click)="logout()">logout
   </button>
   <button ion-button color="light" (click)="register()">register
   </button>

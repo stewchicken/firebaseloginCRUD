@@ -7,22 +7,35 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>product list</ion-title>
+
     <ion-buttons end>
-      <button ion-button icon-only (click)="navtoAddProductPage()">
+      <button ion-button icon-only (click)="navtoAddProductPage()" end>
         <ion-icon name="add"></ion-icon>
-      </button>
+    </button>
     </ion-buttons>
-    <ion-grid>
-    <ion-row *ngFor="let product of proudcts; let i=index ">
-      <ion-col width-50>
-        <img [src]="product.downloadimage" />
+    <ion-title>product list</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+
+
+  <ion-grid>
+    <ion-row class="row" responsive-sm wrap *ngFor="let product of products ">
+      <ion-col>
+        <img [src]="product.imageUrl" height="100px" width="auto" />
+      </ion-col>
+      <ion-col>
+        {{product.name}}
       </ion-col>
     </ion-row>
   </ion-grid>
-  </ion-navbar>
-</ion-header>
 
-<ion-content padding>
+  <!--ion-list inset>
+      <ion-item *ngFor="let product of products " (click)="itemSelected(task)">
+        <img [src]="product.imageUrl" height="50px" width="auto">
+
+        </img>
+      </ion-item>
+    </ion-list-->
 
 </ion-content>
