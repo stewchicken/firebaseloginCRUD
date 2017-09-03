@@ -13,7 +13,7 @@ import * as firebase from 'firebase';
 export class ImageProvider {
 
   constructor(public http: Http) {
-    console.log('Hello ImageProvider Provider');
+    console.log(' ImageProvider Provider');
   }
 
   uploadImage(image: string, namespace: string, imageName: string): any {

@@ -1,5 +1,6 @@
 export interface Product{
-    id : string;
+    $key?:string;
+    //id : string;
     name:string;
     price:number;
     imageUrl:string;

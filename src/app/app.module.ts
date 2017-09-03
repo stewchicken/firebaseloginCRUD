@@ -22,6 +22,8 @@ import { ShoppingPage } from "../pages/shopping/shopping";
 import { AddproductPage } from "../pages/addproduct/addproduct";
 import { ImageProvider } from '../providers/image/image';
 import { Camera } from '@ionic-native/camera';
+import { HousePage } from "../pages/house/house";
+import { AddhousePage } from "../pages/addhouse/addhouse";
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { Camera } from '@ionic-native/camera';
     MenuPage,
     ProductsPage,
     ShoppingPage,
-    AddproductPage
+    AddproductPage,
+    HousePage,
+    AddhousePage
   ],
   imports: [
     BrowserModule,
@@ -53,7 +57,9 @@ import { Camera } from '@ionic-native/camera';
     MenuPage,
     ProductsPage,
     ShoppingPage,
-    AddproductPage
+    AddproductPage,
+    HousePage,
+    AddhousePage
   ],
   providers: [
     StatusBar,

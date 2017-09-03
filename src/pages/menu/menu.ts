@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ProductsPage } from "../products/products";
+import { HousePage } from "../house/house";
+import { AngularFireAuth } from "angularfire2/auth";
 
 /**
  * Generated class for the MenuPage page.
@@ -15,19 +17,31 @@ import { ProductsPage } from "../products/products";
 })
 export class MenuPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams
+    , private afAuth: AngularFireAuth) {
   }
+
+  logout() {
+    let menuPage=this;
+    this.afAuth.auth.signOut().then(function () {
+      menuPage.navCtrl.popToRoot();
+    }, function (error) {
+      // An error happened.
+      console.log(error);
+    });
+  }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MenuPage');
   }
 
-  navtoProduct(){
+  navtoProduct() {
     this.navCtrl.push(ProductsPage);
   }
 
-  navtoShopping(){
-    
+  navtoHouse() {
+    this.navCtrl.push(HousePage);
   }
 
 }

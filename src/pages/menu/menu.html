@@ -5,23 +5,19 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
-    <ion-title>menu</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Platform</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
   <ion-content>
     <ion-item-group>
-      <ion-item-divider color="light">Seller</ion-item-divider>
       <ion-item (click)="navtoProduct()">Product</ion-item>
+      <ion-item (click)="navtoHouse()"> House/Apartment</ion-item>
     </ion-item-group>
   </ion-content>
-  <ion-content>
-    <ion-item-group>
-      <ion-item-divider color="light">Customer</ion-item-divider>
-      <ion-item (click)="navtoShopping()" >Shopping</ion-item>
-    </ion-item-group>
-    
-  </ion-content>
-
-</ion-content>

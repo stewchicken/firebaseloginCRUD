@@ -13,40 +13,53 @@ import { MenuPage } from "../menu/menu";
 })
 export class LoginPage {
   user = {} as User;
-  loggedin = false;
+  //loggedin = false;
   constructor(private afAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
+    this.onAuthCallback = this.onAuthCallback.bind(this);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  async login(user: User) {
-
-    this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password).then((session) => {
-      let firebaseuser = session.currentUser;
-      console.log(firebaseuser);
-      console.log(this.afAuth.auth.currentUser);
-      this.loggedin = true;
+  onAuthCallback(user) {
+    if (!user) {
+      console.log("user is not logged in");
+      //this.logOut();
+      // this.navCtrl.popToRoot()
+    } else {
+      //this.loggedin = true;
       this.user = {} as User;
       this.navCtrl.push(MenuPage);
-
-    }).catch(error => {
-      this.loggedin = false;
-      user.email = "email  maybe wrong!"
-      user.password = "password maybe not correct!"
-    });
+      console.log("user is logged in");
+      return;
+    }
   }
 
-  async logout() {
-    this.afAuth.auth.signOut().then(function () {
-      // Sign-out successful.
-      this.loggedin = false;
-    }, function (error) {
-      // An error happened.
-    });
-
+  ionViewWillEnter() {
+    // When the callback is triggered, it will have the 
+    // proper value for 'this'.
+    this.afAuth.auth.onAuthStateChanged(this.onAuthCallback);
   }
+
+
+  async login(user: User) {
+
+    this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password).
+      then((session) => {
+        let firebaseuser = session.currentUser;
+        console.log(firebaseuser);
+        console.log(this.afAuth.auth.currentUser);
+        this.user = {} as User;
+        this.navCtrl.push(MenuPage);
+
+      }).catch(error => {
+        user.email = "email  maybe wrong!"
+        user.password = "password maybe not correct!"
+      });
+  }
+
+
 
   register() {
     this.navCtrl.push(RegisterPage);
