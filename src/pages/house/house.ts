@@ -59,7 +59,7 @@ export class HousePage {
     this.subscription = this.houseItemRef$.
       subscribe(
       (data: any) => {
-        this.houses = data;
+        this.houses = data as House[];
         for (let i = 0; i < this.houses.length; i++) {
           this.houses[i].imagename;
           console.log("imagename: " + this.houses[i].imagename);
@@ -67,6 +67,10 @@ export class HousePage {
             imageUrl => {
               this.houses[i].imageUrl = imageUrl;
               console.log("imageUrl:" + this.houses[i].imageUrl);
+            }
+          ).catch(
+            error=>{
+              console.log(error);
             }
           );
         }

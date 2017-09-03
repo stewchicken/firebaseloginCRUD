@@ -23,10 +23,10 @@
   <ion-grid>
     <ion-row class="row" responsive-sm wrap *ngFor="let house of houses ">
       <ion-col>
-        <img [src]="house.imageUrl" height="100px" width="auto" />
+        <img ng-if="!house.imageUrl" [src]="house.imageUrl " height="100px" width="auto" />
       </ion-col>
       <ion-col>
-        rooms: {{house.rooms}} location: {{house.location}} 
+        location: {{house.location}}   {{house.rooms}} rooms:
       </ion-col>
     </ion-row>
   </ion-grid>

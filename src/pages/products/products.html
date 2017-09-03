@@ -25,20 +25,12 @@
   <ion-grid>
     <ion-row class="row" responsive-sm wrap *ngFor="let product of products ">
       <ion-col>
-        <img [src]="product.imageUrl" height="100px" width="auto" />
+        <img ng-if="!product.imageUrl" [src]="product.imageUrl" height="100px" width="auto" />
       </ion-col>
       <ion-col>
         {{product.name}}
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  <!--ion-list inset>
-      <ion-item *ngFor="let product of products " (click)="itemSelected(task)">
-        <img [src]="product.imageUrl" height="50px" width="auto">
-
-        </img>
-      </ion-item>
-    </ion-list-->
 
 </ion-content>

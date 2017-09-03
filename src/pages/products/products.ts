@@ -22,7 +22,9 @@ export class ProductsPage {
   }
 
   logout() {
-    //this.subscription.unsubscribe();
+    if (!this.subscription.closed) {
+      this.subscription.unsubscribe();
+    }
     let productPage = this;
     this.afAuth.auth.signOut().then(function () {
       productPage.navCtrl.popToRoot();
@@ -45,14 +47,13 @@ export class ProductsPage {
   ionViewWillEnter() {
     // When the callback is triggered, it will have the 
     // proper value for 'this'.
-    this.products = [];
+    this.products = [] as Product[];
     this.afAuth.auth.onAuthStateChanged(this.onAuthCallback);
     this.productItemRef$ = this.database.list('productitems');
     this.subscription = this.productItemRef$.
       subscribe(
       (data: any) => {
         console.log(data.length);
-
         for (let j = 0; j < data.length; j++) {
           //scope of let variable
           let tmpproduct = {} as Product;
@@ -61,27 +62,32 @@ export class ProductsPage {
           tmpproduct.name = data[j].name;
           tmpproduct.imagename = data[j].imagename;
           tmpproduct.price = data[j].price;
-          console.log("imagename: "+tmpproduct.imagename);
+          console.log("prdouct: " + tmpproduct.name + " imagename: " + tmpproduct.imagename);
           this.imageSrv.getImage("products", tmpproduct.imagename).then(
             imageUrl => {
               tmpproduct.imageUrl = imageUrl;
-              //after imageUrl is resolved then push temproduct into products array
               this.products.push(tmpproduct);
             }
-          );
+          ).catch(
+            error => {
+              this.products.push(tmpproduct);
+              console.log(error);
+            }
+            );
+          // this.products.push(tmpproduct);
         }
-
       });
     console.log('ionViewDidLoad ProductsPage');
   }
 
+
   ionViewWillLeave() {
-    this.subscription.unsubscribe();
+    if (!this.subscription.closed) {
+      this.subscription.unsubscribe();
+    }
   }
 
   navtoAddProductPage() {
     this.navCtrl.push(AddproductPage);
-    //push will have make backbutton for AddproductPage, setRoot will not 
-    //this.navCtrl.setRoot();
   }
 }
