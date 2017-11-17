@@ -26,3 +26,15 @@ Substitute ios for android if not on a Mac.
 
 ionic generate page house
 
+
+## it is boilerplate for app which could upload photo and data into firebase ( remote backend for handy)
+install ionic and cordova
+
+$ sudo npm install -g ionic cordova
+Then, to run it, cd into mytodo and run:
+
+$ ionic serve
+build and publish to android or ios
+
+http://ionicframework.com/docs/intro/deploying/
+
