@@ -38,3 +38,13 @@ build and publish to android or ios
 
 http://ionicframework.com/docs/intro/deploying/
 
+
+
+## geolocation plugin
+https://www.techiediaries.com/ionic-geolocation-google-maps-places-api/
+
+## ionic moduleController 
+
+## set up angular2 google maps
+https://angular-maps.com/
+

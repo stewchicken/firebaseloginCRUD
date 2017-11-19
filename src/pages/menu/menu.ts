@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ProductsPage } from "../products/products";
 import { HousePage } from "../house/house";
+import { ShowmapPage } from "../showmap/showmap";
 import { AngularFireAuth } from "angularfire2/auth";
 
 /**
@@ -44,4 +45,7 @@ export class MenuPage {
     this.navCtrl.push(HousePage);
   }
 
+  navtoMap() {
+    this.navCtrl.push(ShowmapPage);
+  }
 }

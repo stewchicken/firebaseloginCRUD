@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
 import { AngularFireModule } from "angularfire2";
 import { AngularFireDatabaseModule } from "angularfire2/database";
+import { Geolocation } from '@ionic-native/geolocation';
 
 
 import { AngularFireAuthModule } from "angularfire2/auth";
@@ -24,6 +25,7 @@ import { ImageProvider } from '../providers/image/image';
 import { Camera } from '@ionic-native/camera';
 import { HousePage } from "../pages/house/house";
 import { AddhousePage } from "../pages/addhouse/addhouse";
+import { ShowmapPage } from "../pages/showmap/showmap";
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { AddhousePage } from "../pages/addhouse/addhouse";
     ShoppingPage,
     AddproductPage,
     HousePage,
-    AddhousePage
+    AddhousePage,
+    ShowmapPage
   ],
   imports: [
     BrowserModule,
@@ -59,14 +62,17 @@ import { AddhousePage } from "../pages/addhouse/addhouse";
     ShoppingPage,
     AddproductPage,
     HousePage,
-    AddhousePage
+    AddhousePage,
+    ShowmapPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ImageProvider,
-    Camera
+    Camera,
+    Geolocation,
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
   ]
 })
 export class AppModule { }
