@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { AngularFireModule } from "angularfire2";
 import { AngularFireDatabaseModule } from "angularfire2/database";
 import { Geolocation } from '@ionic-native/geolocation';
-
+import { AgmCoreModule } from '@agm/core';
 
 import { AngularFireAuthModule } from "angularfire2/auth";
 import { MyApp } from './app.component';
@@ -27,6 +27,7 @@ import { HousePage } from "../pages/house/house";
 import { AddhousePage } from "../pages/addhouse/addhouse";
 import { ShowmapPage } from "../pages/showmap/showmap";
 import { AddaccidentPage } from '../pages/addaccident/addaccident';
+import { AccidentPage } from '../pages/accident/accident';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { AddaccidentPage } from '../pages/addaccident/addaccident';
     HousePage,
     AddhousePage,
     ShowmapPage,
-    AddaccidentPage
+    AddaccidentPage,
+    AccidentPage
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,11 @@ import { AddaccidentPage } from '../pages/addaccident/addaccident';
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAURS-J1xRlF9wEuQ6XjYSqqJVDzvUOOuc'
+    })
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -66,7 +72,8 @@ import { AddaccidentPage } from '../pages/addaccident/addaccident';
     HousePage,
     AddhousePage,
     ShowmapPage,
-    AddaccidentPage
+    AddaccidentPage,
+    AccidentPage
   ],
   providers: [
     StatusBar,

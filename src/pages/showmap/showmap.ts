@@ -29,6 +29,11 @@ export class ShowmapPage {
   accidentsItemRef$: FirebaseListObservable<Accident[]>;
   subscription: Subscription;
 
+  title: string = 'My current Location';
+  lat: number ;
+  lng: number ;
+
+
   constructor(private geolocation: Geolocation, public navCtrl: NavController, public navParams: NavParams,
     private afAuth: AngularFireAuth,
     private database: AngularFireDatabase, private imageSrv: ImageProvider) {
@@ -42,10 +47,14 @@ export class ShowmapPage {
   showMap() {
 
     this.geolocation.getCurrentPosition().then((resp) => {
+      this.lat=resp.coords.latitude;
+      this.lng=resp.coords.longitude;
+      
       // resp.coords.latitude
       // resp.coords.longitude
 
       //location - lat long
+      /*
       let location = { lat: resp.coords.latitude, lng: resp.coords.longitude };
       const options = {
         zoom: 10,
@@ -55,14 +64,9 @@ export class ShowmapPage {
       )
       console.log("showMap location: " + location);
 
-     /*
-      var marker = new google.maps.Marker({
-        position: location,
-        map: map,
-        title: 'Hello World!'
-      });
+    
       */
-      this.addMarker(location, map, 'helloworld!');
+     // this.addMarker(location, map, 'helloworld!');
     }).catch((error) => {
       console.log('Error getting location', error);
     });
