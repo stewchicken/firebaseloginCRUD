@@ -23,7 +23,16 @@
 
 <ion-content padding>
   <!--div #map id="map"></div-->
-  <agm-map [latitude]="lat" [longitude]="lng">
-    <agm-marker [latitude]="lat" [longitude]="lng" [label]="title"></agm-marker>
-  </agm-map>
+    <agm-map [latitude]="lat" [longitude]="lng">
+      <!--agm-marker [latitude]="{accident.lat}"
+       [longitude]="{accident.lng}" [label]="{accident.date}">
+       </agm-marker-->
+       <div *ngFor="let accident of accidents; let j = index">
+              <agm-marker [label]="accident.details"  [latitude]="accident.lat" [longitude]="accident.lng">
+                <!--agm-info-window>
+                  <strong>{{accident.details|date}}</strong>
+                </agm-info-window-->
+              </agm-marker>
+            </div>
+    </agm-map>
 </ion-content>

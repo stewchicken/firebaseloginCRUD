@@ -7,5 +7,6 @@ export interface Accident {
     category:string
     handynumber:string
     status:string;
+    date:Date;
     details: string;
 }

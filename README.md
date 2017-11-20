@@ -58,3 +58,12 @@ https://www.youtube.com/watch?v=0Ue6fNPOdB4
 
 ## add real devices 
 C:\Users\ywang\AppData\Local\Android\Sdk\platform-tools\adb devices
+
+## questions
+ionoic cordova build android (how to set android version for example android 7.0)
+
+## why i need to install cordova and native plugin both
+## could i use geolcation if i only install npm install --save @ionic-native/geolocation
+Install the Cordova and Ionic Native plugins:
+$ ionic cordova plugin add cordova-plugin-geolocation --variable GEOLOCATION_USAGE_DESCRIPTION="To locate you"
+$ npm install --save @ionic-native/geolocation

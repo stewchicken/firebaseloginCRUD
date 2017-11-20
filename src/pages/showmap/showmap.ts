@@ -25,13 +25,13 @@ export class ShowmapPage {
   @ViewChild('map') mapRef: ElementRef;
 
 
-  accidents:Accident[] = [];
+  accidents: Accident[] = [];
   accidentsItemRef$: FirebaseListObservable<Accident[]>;
   subscription: Subscription;
 
   title: string = 'My current Location';
-  lat: number ;
-  lng: number ;
+  lat: number;
+  lng: number;
 
 
   constructor(private geolocation: Geolocation, public navCtrl: NavController, public navParams: NavParams,
@@ -47,26 +47,11 @@ export class ShowmapPage {
   showMap() {
 
     this.geolocation.getCurrentPosition().then((resp) => {
-      this.lat=resp.coords.latitude;
-      this.lng=resp.coords.longitude;
+      this.lat = resp.coords.latitude;
+      this.lng = resp.coords.longitude;
+      console.log("lat: xxx "+this.lat);
+      console.log("lng: xxx "+this.lng)
       
-      // resp.coords.latitude
-      // resp.coords.longitude
-
-      //location - lat long
-      /*
-      let location = { lat: resp.coords.latitude, lng: resp.coords.longitude };
-      const options = {
-        zoom: 10,
-        center: location
-      }
-      let map = new google.maps.Map(this.mapRef.nativeElement, options
-      )
-      console.log("showMap location: " + location);
-
-    
-      */
-     // this.addMarker(location, map, 'helloworld!');
     }).catch((error) => {
       console.log('Error getting location', error);
     });
@@ -74,28 +59,46 @@ export class ShowmapPage {
 
   }
 
-  addMarker(location, map, title) {
-   return new google.maps.Marker({
-        position: location,
-        map: map,
-        title: title
-      });
-  }
+
 
   ionViewWillEnter() {
+    this.showMap();
     console.log('ionViewDidLoad ShowMapPage');
+    console.log('ionViewWillEnter HousePage');
+    this.afAuth.auth.onAuthStateChanged(this.onAuthCallback);
+    this.accidentsItemRef$ = this.database.list('accidentitems');
+    this.subscription = this.accidentsItemRef$.
+      subscribe(
+      (data: any) => {
+        this.accidents = data as Accident[];
+        for (let i = 0; i < this.accidents.length; i++) {
+          this.accidents[i].imagename;
+          console.log("imagename: " + this.accidents[i].imagename);
+          this.imageSrv.getImage("houses", this.accidents[i].imagename).then(
+            imageUrl => {
+              this.accidents[i].imageUrl = imageUrl;
+              console.log("imageUrl:" + this.accidents[i].imageUrl);
+            }
+          ).catch(
+            error => {
+              console.log(error);
+            }
+            );
+        }
+      });
+    console.log('ionViewDidLoad HousePage');
   }
 
-  ionViewWillLeave(){
+  ionViewWillLeave() {
     //this.subscription.unsubscribe();
-    if(this.subscription){
+    if (this.subscription) {
       this.subscription.unsubscribe();
     }
   }
 
-  navtoAddAccidentPage(){
+  navtoAddAccidentPage() {
     this.navCtrl.push(AddaccidentPage);
-}
+  }
 
   logout() {
     let housePage = this;

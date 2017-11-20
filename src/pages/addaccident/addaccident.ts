@@ -51,6 +51,8 @@ export class AddaccidentPage {
       accident.lng = resp.coords.longitude;
       console.log("imagename: " + this.accident.imagename);
       console.log("imageUrl: " + this.accident.imageUrl);
+      accident.date=new Date();
+      accident.status='NEW';
       this.accidentsItemRef$.push(accident);
       this.accident = {} as Accident;
       this.navCtrl.pop();
