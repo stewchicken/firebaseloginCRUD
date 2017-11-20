@@ -38,13 +38,18 @@ build and publish to android or ios
 
 http://ionicframework.com/docs/intro/deploying/
 
+## build and publish to android or 
+http://ionicframework.com/docs/intro/deploying/
 
+## set up google map js sdk (if you dont want to use angular2 google map native sdk)
+https://www.youtube.com/watch?v=0Ue6fNPOdB4 
 
 ## geolocation plugin
 https://www.techiediaries.com/ionic-geolocation-google-maps-places-api/
 
 ## ionic moduleController 
 
-## set up angular2 google maps
+## set up angular2 google maps (if you dont want to use google map js sdk)
 https://angular-maps.com/
+https://www.youtube.com/watch?v=0Ue6fNPOdB4 
 

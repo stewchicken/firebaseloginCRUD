@@ -26,6 +26,7 @@ import { Camera } from '@ionic-native/camera';
 import { HousePage } from "../pages/house/house";
 import { AddhousePage } from "../pages/addhouse/addhouse";
 import { ShowmapPage } from "../pages/showmap/showmap";
+import { AddaccidentPage } from '../pages/addaccident/addaccident';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ShowmapPage } from "../pages/showmap/showmap";
     AddproductPage,
     HousePage,
     AddhousePage,
-    ShowmapPage
+    ShowmapPage,
+    AddaccidentPage
   ],
   imports: [
     BrowserModule,
@@ -63,7 +65,8 @@ import { ShowmapPage } from "../pages/showmap/showmap";
     AddproductPage,
     HousePage,
     AddhousePage,
-    ShowmapPage
+    ShowmapPage,
+    AddaccidentPage
   ],
   providers: [
     StatusBar,
