@@ -38,9 +38,10 @@ build and publish to android or ios
 
 http://ionicframework.com/docs/intro/deploying/
 
-## build and publish to android or 
+## build and publish to android or ios or debug on real devices
 https://github.com/stewchicken/ionic-myplace/README.MD
 http://ionicframework.com/docs/intro/deploying/
+https://github.com/stewchicken/PicPrint/blob/master/doc.txt
 
 
 ## set up google map js sdk (if you dont want to use angular2 google map native sdk)
@@ -55,3 +56,5 @@ https://www.techiediaries.com/ionic-geolocation-google-maps-places-api/
 https://angular-maps.com/
 https://www.youtube.com/watch?v=0Ue6fNPOdB4 
 
+## add real devices 
+C:\Users\ywang\AppData\Local\Android\Sdk\platform-tools\adb devices
