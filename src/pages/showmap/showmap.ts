@@ -74,7 +74,7 @@ export class ShowmapPage {
         for (let i = 0; i < this.accidents.length; i++) {
           this.accidents[i].imagename;
           console.log("imagename: " + this.accidents[i].imagename);
-          this.imageSrv.getImage("houses", this.accidents[i].imagename).then(
+          this.imageSrv.getImage("accidents", this.accidents[i].imagename).then(
             imageUrl => {
               this.accidents[i].imageUrl = imageUrl;
               console.log("imageUrl:" + this.accidents[i].imageUrl);
